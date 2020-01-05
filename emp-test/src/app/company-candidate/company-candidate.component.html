@@ -1,0 +1,26 @@
+<div class="col-md-6 offset-md-3 mt-5">
+        <form [formGroup]='companyForm' (ngSubmit)='printForm()'>
+            <input type="text" name="companyName" placeholder="Company Name" formControlName='companyName' id="companyName"
+                class="form-control mb-3">
+            <input type="text" name="location" placeholder="Location" formControlName='location' id="location"
+                class="form-control mb-3">
+            <div>
+                Candidate
+                <button class="btn btn-outline-primary" type="button" (click)='addCandidate()'>Add Candidate</button>
+            </div>
+            <div formArrayName='candidateDet' *ngFor='let group of companyForm.get("candidateDet").controls; index as i'>
+                <div [formGroupName]='i'>
+                    <input type="text" name="fullName" id="{{'fullName' + i}}" placeholder="Full Name" class="form-control mb-3"
+                        formControlName='fullName'>
+                    <input type="text" name="degreePer" id="{{'degreePer' + i}}" placeholder="Degree Percentage" class="form-control mb-3"
+                        formControlName='degreePer'>
+                    <input type="radio" formControlName='speciality' value='meanStack'>Mean Stack
+                    <input type="radio" formControlName='speciality' value='jfs'>Java Full Stack
+                    <input type="radio" formControlName='speciality' value='ds'>DS
+                </div>
+                <button class="btn btn-dark" (click)='removeCandidate(i)'>X</button>
+            </div>
+            <button class="btn btn-primary float-right" type="submit">Submit</button>
+        </form>
+
+</div>
